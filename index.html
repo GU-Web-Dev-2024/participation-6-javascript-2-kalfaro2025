@@ -54,19 +54,47 @@
     </div>
 
     <script>
-        // JavaScript code goes here   
-
-
+        // JavaScript code goes here 
+        var guessCounter = 3;  
+        var currentGuess = -1;
+        function generateRandomNumber() {
+            var randomNumber = Math.floor(Math.random() * 10);
+        }
+        function checkGuess() {
+            currentGuess = document.getElementById("guess-input").value;
+            if (currentGuess == randomNumber) {
+                document.getElementById("message").innerHTML = "Correct! You guessed the number in " + guessCounter + " guesses.";
+            }
+            else if (currentGuess < randomNumber) {
+                document.getElementById("message").innerHTML = "Your guess is too low. You have " + guessCounter + " guesses left.";
+            }
+            else if (currentGuess > randomNumber) {
+                document.getElementById("message").innerHTML = "Your guess is too high. You have " + guessCounter + " guesses left.";
+            }
+            guessCounter--;
+        }
+        function runGame() {
+            generateRandomNumber();
+            while(guessCounter > 0) {
+                checkGuess();
+            }
+        }
         // Added a click listener to the button (will be covered more in zyBook 7.4), 
         // for now just use the following which:
         // uses the document object and selects the element with a matching Id found in the DOM.
         // adds an event listener (for a click) of that selected element.
         // executes the code in the body of the anonymous function
-        document.getElementById('guess-button').addEventListener('click', function () {
+        let button = document.getElementById('guess-button').addEventListener('click', function () {
+
+            button.addEventListener('click', function () {
+                runGame();  
+                //alert("Clicked!");
+                //document.getElementById("guess-input").value = 99;
+            })
             //function body -- any code here will be executed when the registered event is triggered.
         });
 
     </script>
 </body>
 
-</html>
+</html> 
