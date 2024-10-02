@@ -44,7 +44,7 @@
         </div>
 
         <div>
-            <button id="guess-button">Submit Guess</button>
+            <button type ="button" id="guess-button">Submit Guess</button>
         </div>
 
         <div>
@@ -53,7 +53,7 @@
         <hr>
     </div>
 
-    <script>
+    <script type="text/javascript">
         // JavaScript code goes here 
         var guessCounter = 3;  
         var currentGuess = -1;
@@ -63,21 +63,15 @@
         }
         function checkGuess() {
             currentGuess = document.getElementById("guess-input").value;
+            guessCounter--;
             if (currentGuess == randomNumber) {
-                document.getElementById("message") = "Correct! You guessed the number in " + guessCounter + " guesses.";
+                document.getElementById("message").innerHTML = "Correct! You guessed the number in " +  3 - guessCounter + " guesses.";
             }
             else if (currentGuess < randomNumber) {
-                document.getElementById("message") = "Your guess is too low. You have " + guessCounter + " guesses left.";
+                document.getElementById("message").innerHTML = "Your guess is too low. You have " + guessCounter + " guesses left.";
             }
             else if (currentGuess > randomNumber) {
-                document.getElementById("message") = "Your guess is too high. You have " + guessCounter + " guesses left.";
-            }
-            guessCounter--;
-        }
-        function runGame() {
-            generateRandomNumber();
-            while(guessCounter > 0) {
-                checkGuess();
+                document.getElementById("message").innerHTML = "Your guess is too high. You have " + guessCounter + " guesses left.";
             }
         }
         // Added a click listener to the button (will be covered more in zyBook 7.4), 
@@ -85,10 +79,11 @@
         // uses the document object and selects the element with a matching Id found in the DOM.
         // adds an event listener (for a click) of that selected element.
         // executes the code in the body of the anonymous function
-        let button = document.getElementById('guess-button').addEventListener('click', function () {
+        /*let button = document.getElementById('guess-button').addEventListener('click', function () {
             runGame();
             //function body -- any code here will be executed when the registered event is triggered.
-        });
+        });*/
+        document.getElementById('guess-button').addEventListener('click', checkGuess); 
 
     </script>
 </body>
